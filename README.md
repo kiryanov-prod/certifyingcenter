@@ -9,10 +9,10 @@
   SUPER_ADMIN - все тоже, что и ADMIN + имеет возможность изменять корневой сертификат сервера.
 
 
-Тестовые данные для входа.
+№№Тестовые данные для входа.
 
 
-Username: user@cert
+Username: user@cert 
 Password: 100
 
 Username: admin@cert
