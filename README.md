@@ -6,17 +6,15 @@
   
   ADMIN - все тоже, что и USER + имеет возможноть одобрять/отклонять сертификаты пользователей
   
-  SUPER_ADMIN - все тоже, что и ADMIN + имеет возможность изменять корневой сертификат сервера.
+  SUPER_ADMIN - все тоже, что и ADMIN + имеет возможность изменять корневой сертификат сервера
 
 
 ## Тестовые данные для входа.
 
 
-Username: user@cert 
-Password: 100
+Username | Password | Role
+--- | --- | ---
+user@cert | 100 | USER
+admin@cert | 100 | ADMIN
+sadmin | 100 | SADMIN
 
-Username: admin@cert
-Password: 100
-
-Username sadmin@cert
-Password: 100
