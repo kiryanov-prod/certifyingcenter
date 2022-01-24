@@ -16,5 +16,5 @@ Username | Password | Role
 --- | --- | ---
 user@cert | 100 | USER
 admin@cert | 100 | ADMIN
-sadmin | 100 | SADMIN
+sadmin@cert | 100 | SUPER_ADMIN
 
