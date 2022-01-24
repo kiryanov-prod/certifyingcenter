@@ -1,0 +1,8 @@
+.form-login-wrap img{
+    width: 70%;
+    margin-left: 15%;
+}
+.form-login-wrap p a{
+    text-decoration: underline;
+    fill: #E040FB;
+}

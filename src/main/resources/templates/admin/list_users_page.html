@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель управления</title>
+    <link rel="icon" th:href="@{/img/mainicon/main.png}">
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/styles/admin_page_users_style.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand mr-5" href="#"><i class="fas fa-user-lock text-muted"></i> Панель администратора</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link  active" th:href="@{/admin/list_certificates}"><i class="fas fa-stream"></i> Список сертификатов</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/admin/list_users}"><i class="fas fa-user-friends"></i> Список пользователей</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}"><i class="fas fa-home"></i> Личный кабинет (Обычный юзер)</a>
+            </li>
+        </ul>
+        <button type="button" class="btn btn-outline-danger mr-2" data-toggle="modal" data-target="#exampleModalCenter">
+            Сертификат сервера
+        </button>
+        <form class="form-inline my-2 my-lg-0 pr-4" th:method="POST" th:action="@{/logout}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выход</button>
+        </form>
+    </div>
+</nav>
+
+<div class="row justify-content-center my-4">
+    <h4>Полный список пользователей сайта</h4>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" >ID</th>
+                    <th scope="col" >Email</th>
+                    <th scope="col" >Имя</th>
+                    <th scope="col" >Фамилия</th>
+                    <th scope="col" class="text-center">Admin</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr th:each="user : ${users} ">
+                    <th class="user_id" th:text="*{user.getId()}" scope="row"></th>
+                    <td class="user_name" th:text="*{user.getUsername()}" ></td>
+                    <td th:text="*{user.getFistName()}" ></td>
+                    <td th:text="*{user.getLastName()}" ></td>
+                    <td>
+                        <div class="container-fluid">
+                            <div class="row justify-content-center">
+                                <input th:checked="*{user.isAdmin()}" type="checkbox" class="form-check-input mt-1 changeRole" th:id="*{user.getId()}">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<div  class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="text-muted">
+                    Управление корневым сертификатом
+                </h6>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row py-2 justify-content-center">
+                    <a class="btn btn-primary" th:href="@{/download/root_cert}" role="button">Скачать корневой сертификат сервера</a>
+                </div>
+                <div class="row py-2 justify-content-center">
+                    <a class="btn btn-outline-danger" th:href="@{/admin/generate_root_cert}" role="button">
+                        Изменить корневой сертификат сервера
+                    </a>
+                    <p class="text-danger px-4 mt-3 text-monospace text-justify" >
+                        Изменив текущий сертификать сервера, старый сертификат будет полностью удален.
+                    </p>
+                    <p class="text-danger px-4 my-1 text-monospace text-justify">
+                        Все подписания заявок студенков, на получение сертификата будут производиться новым приватным ключем,
+                        нового корневого сертификата нашего CA.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script th:src="@{/scripts/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/scripts/bootstrap.min.js}"></script>
+
+<script th:src="@{/scripts/super_admin_app.js}"> </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.button-wrap{
+    display: flex;
+    width: 230px;
+    justify-content: space-between;
+}
+.button-wrap button{
+    width: 110px;
+}
+.cert-empty{
+    display: none;
+}

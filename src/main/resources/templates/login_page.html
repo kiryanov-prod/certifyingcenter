@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <link rel="icon" th:href="@{/img/mainicon/main.png}">
+
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/styles/loginPageStyle.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"> <i class="fas fa-home"></i> Центр сертификации</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fas fa-plus-square"></i> Запросить сертификат</a>
+            </li>
+        </ul>
+        <div class="wrap d-flex mr-3">
+            <a class="btn btn-outline-success mr-3" th:href="@{/registry}" role="button">Регистрация</a>
+            <a class="btn btn-outline-primary" th:href="@{/login}" role="button">Вход</a>
+        </div>
+
+    </div>
+</nav>
+
+    <div class="container-fluid form-login-wrap">
+        <div class="row justify-content-center">
+            <div class="col-9 col-md-6 сol-md-5 col-xl-4">
+                <form name="f" th:action="@{/login}" method="POST" class="shadow p-3 bg-white rounded">
+                    <div th:if="${param.successfulRegistration}" class="alert alert-success" role="alert">
+                        Вы успешно зарегистрировались, можете войти.
+                    </div>
+                    <img th:src="@{/img/login_image.png}"  alt="">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" th:name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" th:name="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                        <button type="submit" class="btn btn-primary">Вход</button>
+                    </div>
+                    <p class="text-muted pt-4">
+                        У вас нет аккаунта? <a th:href="@{/registry}" class="text-reset text-primary">Создайте его</a>.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/scripts/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/scripts/bootstrap.min.js}"></script>
+
+</body>
+</html>

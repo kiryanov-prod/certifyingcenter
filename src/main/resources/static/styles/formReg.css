@@ -1,0 +1,11 @@
+
+.form-registry{
+    margin-top: 40px;
+}
+
+#password-error{
+    display: none;
+}
+#name-error{
+    display: none;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="icon" th:href="@{/img/mainicon/main.png}">
+
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/styles/formReg.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"> <i class="fas fa-home"></i> Центр сертификации</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fas fa-plus-square"></i> Запросить сертификат</a>
+            </li>
+        </ul>
+        <div class="wrap d-flex mr-3">
+            <a class="btn btn-outline-success mr-3" th:href="@{/registry}" role="button">Регистрация</a>
+            <a class="btn btn-outline-primary" th:href="@{/login}" role="button">Вход</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<div class="container-fluid form-registry">
+    <div class="row justify-content-center">
+        <div class="col-9 col-md-6 сol-md-5 col-xl-4">
+            <form th:action="@{registry_end}" th:method="POST" th:object="${registryObject}">
+                <div class="alert alert-danger text-center mb-1" role="alert">
+                    Создайте свой аккаунт!
+                </div>
+                <div th:if="${param.nameUs}" class="alert alert-success" role="alert">
+                    Имя пользователя занято ...
+                </div>
+                <div th:if="${param.passwordError}" class="alert alert-success" role="alert">
+                    Пароли не совпадают
+                </div>
+                <div class="form-group">
+                    <label for="firstNameId">Имя</label>
+                    <input th:field="*{firsName}" type="text" class="form-control" id="firstNameId">
+                </div>
+                <div class="form-group">
+                    <label for="lastNameId">Фамилия</label>
+                    <input th:field="*{lastName}" type="text" class="form-control" id="lastNameId">
+                </div>
+                <div class="form-group" th:id="name-error">
+                    <p class="text-danger">Введите имя</p>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input th:field="*{username}" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Пароль</label>
+                    <input th:field="*{password}" type="password" class="form-control" id="inputPassword">
+                </div>
+                <div class="form-group">
+                    <label for="inputConfirmPassword">Подтвердите пароль</label>
+                    <input th:field="*{confirmPassword}" type="password" class="form-control" id="inputConfirmPassword">
+                </div>
+                <div class="form-group" th:id="password-error">
+                    <p class="text-danger">Пароли не совпадают</p>
+                </div>
+                <div class="form-group mt-2">
+                    <div class="row justify-content-center">
+                        <button type="submit" class="btn btn-primary" id="submit_form_reg">Регистрация</button>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <a th:href="@{/login}" class="btn btn-secondary" role="button" aria-pressed="true" >Войти</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<footer class="container-fluid text-center py-3 fixed-bottom" style="background-color: #f8f9fa ">
+    <h6 class="text-center text-muted p-0 m-0">©2021 Все права защищены</h6>
+</footer>-->
+<script th:src="@{/scripts/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/scripts/bootstrap.min.js}"></script>
+
+
+<script th:src="@{/scripts/registry_validation.js}"> </script>
+
+
+</body>
+</html>
